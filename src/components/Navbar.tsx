@@ -1,6 +1,16 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, MessageSquare } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,6 +41,32 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  // Group the navigation links into three categories
+  const navCategories = [
+    {
+      title: "Discover",
+      items: [
+        { name: "Home", href: "#home" },
+        { name: "About", href: "#about" },
+        { name: "Gallery", href: "#gallery" },
+      ],
+    },
+    {
+      title: "Services",
+      items: [
+        { name: "Membership", href: "#membership" },
+        { name: "Trainers", href: "#trainers" },
+      ],
+    },
+    {
+      title: "Connect",
+      items: [
+        { name: "Testimonials", href: "#testimonials" },
+        { name: "Contact", href: "#contact" },
+      ],
+    },
+  ];
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -43,32 +79,76 @@ const Navbar = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-white hover:text-gym-yellow transition-colors duration-300 font-medium"
+        <div className="hidden md:flex items-center gap-4">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navCategories.map((category) => (
+                <NavigationMenuItem key={category.title}>
+                  <NavigationMenuTrigger className="bg-transparent text-white hover:text-gym-yellow hover:bg-transparent">
+                    {category.title}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[200px] gap-3 p-4 bg-gym-gray-800 rounded-md">
+                      {category.items.map((item) => (
+                        <li key={item.name}>
+                          <NavigationMenuLink asChild>
+                            <a
+                              href={item.href}
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gym-gray-700 hover:text-gym-yellow"
+                            >
+                              <div className="text-sm font-medium">{item.name}</div>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+          
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="outline" 
+              className="border-gym-yellow text-gym-yellow hover:bg-gym-yellow hover:text-gym-black"
+              size="sm"
+              onClick={() => window.open("https://wa.me/+911234567890", "_blank")}
             >
-              {link.name}
+              <MessageSquare className="mr-2 h-4 w-4" />
+              WhatsApp
+            </Button>
+            
+            <a href="#membership" className="btn btn-primary">
+              Join Now
             </a>
-          ))}
-          <a href="#membership" className="btn btn-primary ml-2">
-            Join Now
-          </a>
-          <a href="/login" className="flex items-center gap-2 px-4 py-2 bg-gym-gray-800 hover:bg-gym-gray-700 text-white rounded-md transition-colors duration-300">
-            <User size={18} />
-            <span>Login</span>
-          </a>
-        </nav>
+            
+            <a href="/login" className="flex items-center gap-2 px-4 py-2 bg-gym-gray-800 hover:bg-gym-gray-700 text-white rounded-md transition-colors duration-300">
+              <User size={18} />
+              <span>Login</span>
+            </a>
+          </div>
+        </div>
 
         {/* Mobile Navigation Toggle */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-white focus:outline-none"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <Button 
+            variant="outline" 
+            className="border-gym-yellow text-gym-yellow hover:bg-gym-yellow hover:text-gym-black"
+            size="sm"
+            onClick={() => window.open("https://wa.me/+911234567890", "_blank")}
+          >
+            <MessageSquare className="mr-2 h-4 w-4" />
+            WhatsApp
+          </Button>
+          
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white focus:outline-none"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
