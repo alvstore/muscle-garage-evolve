@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Pool, Lock, Cloud, Car, Heart, Yoga } from "lucide-react";
+import { Waves, Lock, Cloud, Car, Heart, Dumbbell } from "lucide-react";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -32,7 +32,7 @@ const AboutSection = () => {
 
   const facilities = [
     {
-      icon: <Pool className="h-8 w-8" />,
+      icon: <Waves className="h-8 w-8" />,
       title: "Swimming Pool & Ice Bath",
       description: "Olympic-sized swimming pool and therapeutic ice bath for recovery."
     },
@@ -57,7 +57,7 @@ const AboutSection = () => {
       description: "State-of-the-art cardio equipment with personal entertainment screens."
     },
     {
-      icon: <Yoga className="h-8 w-8" />,
+      icon: <Dumbbell className="h-8 w-8" />,
       title: "Zumba & Yoga Studio",
       description: "Spacious studio for various fitness classes led by certified instructors."
     }
