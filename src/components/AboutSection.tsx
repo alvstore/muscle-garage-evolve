@@ -66,16 +66,24 @@ const AboutSection = () => {
   return (
     <section id="about" ref={sectionRef} className="section-padding bg-gym-black">
       <div className="gym-container">
-        <div className={`text-center max-w-3xl mx-auto mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+        <div className={`text-center max-w-3xl mx-auto mb-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h2 className="text-3xl md:text-5xl font-impact mb-4">
             ABOUT <span className="text-gym-yellow">MUSCLE GARAGE</span>
           </h2>
-          <p className="text-gray-300">
-            Established in 2017, Muscle Garage has grown to become one of the largest and most
-            premium fitness facilities in Ahmedabad. Our 15,000 sq ft facility offers cutting-edge
-            equipment, expert personal training, and luxury amenities to help you achieve your
-            fitness goals.
+          <p className="text-gray-300 mb-6">
+            Muscle Garage is the biggest, most advanced GYM in Ahmedabad. The Facility is fully equipped with state of the art Cardio machines, 
+            sensorised strength training machines and a variety of training equipment to workout on. The GYM features a Strength zone, Free-weight zone, 
+            Cardio zone, Group training studio, crossfit area, swimming pool, steam bath and ICE Bath.
           </p>
+          
+          <div className="mt-8 mb-8">
+            <h3 className="text-2xl font-impact mb-4">OUR <span className="text-gym-yellow">GOAL</span></h3>
+            <p className="text-gray-300">
+              Our Mission is to provide a Dynamic Training Facility with state of the art equipments, Pro-instructors & High-level training.  
+              All our members are trained by Pro-Trainers who have abundance of knowledge & skills in many aspects of Fitness.  
+              Our Focus is a Fitness Experience that builds a stronger You!!
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 const MembershipSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'quarterly' | 'yearly'>('monthly');
+  const [planType, setPlanType] = useState<'gym' | 'pool' | 'pt'>('gym');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,80 +31,153 @@ const MembershipSection = () => {
     };
   }, []);
 
-  const plans = [
+  const gymPlans = [
     {
-      name: "Basic",
-      description: "Perfect for beginners",
-      monthlyPrice: 1999,
-      quarterlyPrice: 5499,
-      yearlyPrice: 19999,
+      name: "One Month",
+      price: 5000,
       features: [
         "Full gym access",
-        "Locker access",
-        "Fitness assessment",
-        "Free parking"
-      ],
-      popular: false
+        "Ice Bath",
+        "Steam Bath",
+        "Shower",
+        "Locker access"
+      ]
     },
     {
-      name: "Premium",
-      description: "Our most popular plan",
-      monthlyPrice: 2999,
-      quarterlyPrice: 8499,
-      yearlyPrice: 29999,
+      name: "Three Months",
+      price: 13500,
+      popular: true,
       features: [
         "Full gym access",
+        "Ice Bath",
+        "Steam Bath",
+        "Shower",
         "Locker access",
-        "Swimming pool access",
-        "Fitness assessment",
-        "1 PT session/month",
-        "Free parking",
-        "Steam room access"
-      ],
-      popular: true
+        "10% discount on quarterly plan"
+      ]
     },
     {
-      name: "Elite",
-      description: "For dedicated fitness enthusiasts",
-      monthlyPrice: 3999,
-      quarterlyPrice: 11499,
-      yearlyPrice: 39999,
+      name: "Six Months",
+      price: 20000,
       features: [
         "Full gym access",
+        "Ice Bath",
+        "Steam Bath",
+        "Shower",
         "Locker access",
-        "Swimming pool access",
-        "Fitness assessment",
-        "3 PT sessions/month",
-        "Free parking",
-        "Steam room access",
-        "Ice bath access",
-        "Nutrition consultation"
-      ],
-      popular: false
+        "33% discount on half-yearly plan"
+      ]
+    },
+    {
+      name: "Annual",
+      price: 30000,
+      features: [
+        "Full gym access",
+        "Ice Bath",
+        "Steam Bath",
+        "Shower",
+        "Locker access",
+        "50% discount on yearly plan"
+      ]
     }
   ];
 
-  const getPrice = (plan: typeof plans[0]) => {
-    switch(billingCycle) {
-      case 'monthly':
-        return plan.monthlyPrice;
-      case 'quarterly':
-        return plan.quarterlyPrice;
-      case 'yearly':
-        return plan.yearlyPrice;
-      default:
-        return plan.monthlyPrice;
+  const poolPlans = [
+    {
+      name: "One Month",
+      price: 2000,
+      features: [
+        "Pool access",
+        "Coaching",
+        "Shower",
+        "Locker access"
+      ]
+    },
+    {
+      name: "Three Months",
+      price: 5000,
+      popular: true,
+      features: [
+        "Pool access",
+        "Coaching",
+        "Shower",
+        "Locker access",
+        "17% discount on quarterly plan"
+      ]
+    },
+    {
+      name: "Six Months",
+      price: 7000,
+      features: [
+        "Pool access",
+        "Coaching",
+        "Shower",
+        "Locker access",
+        "42% discount on half-yearly plan"
+      ]
+    },
+    {
+      name: "Annual",
+      price: 10000,
+      features: [
+        "Pool access",
+        "Coaching",
+        "Shower",
+        "Locker access",
+        "58% discount on yearly plan"
+      ]
     }
-  };
+  ];
 
-  const getSavings = (plan: typeof plans[0]) => {
-    if (billingCycle === 'quarterly') {
-      return Math.round(((plan.monthlyPrice * 3) - plan.quarterlyPrice) / (plan.monthlyPrice * 3) * 100);
-    } else if (billingCycle === 'yearly') {
-      return Math.round(((plan.monthlyPrice * 12) - plan.yearlyPrice) / (plan.monthlyPrice * 12) * 100);
+  const ptPlans = [
+    {
+      name: "Level One - One Month",
+      price: 10000,
+      features: [
+        "Personalized training plan",
+        "1-on-1 coaching",
+        "Nutritional guidance",
+        "Progress tracking"
+      ]
+    },
+    {
+      name: "Level One - Three Months",
+      price: 27000,
+      popular: true,
+      features: [
+        "Personalized training plan",
+        "1-on-1 coaching",
+        "Nutritional guidance",
+        "Progress tracking",
+        "10% discount on quarterly plan"
+      ]
+    },
+    {
+      name: "Level Two - One Month",
+      price: 20000,
+      features: [
+        "Advanced personalized training",
+        "Premium 1-on-1 coaching",
+        "Comprehensive nutritional plan",
+        "Detailed progress analytics",
+        "Recovery guidance"
+      ]
+    },
+    {
+      name: "Level Two - Three Months",
+      price: 50000,
+      features: [
+        "Advanced personalized training",
+        "Premium 1-on-1 coaching",
+        "Comprehensive nutritional plan",
+        "Detailed progress analytics",
+        "Recovery guidance",
+        "17% discount on quarterly plan"
+      ]
     }
-    return 0;
-  };
+  ];
+
+  const activePlans = planType === 'gym' ? gymPlans : planType === 'pool' ? poolPlans : ptPlans;
 
   return (
     <section id="membership" ref={sectionRef} className="section-padding bg-gym-black">
@@ -117,45 +190,45 @@ const MembershipSection = () => {
             Choose the plan that fits your fitness journey and budget. All plans include access to our premium facilities.
           </p>
 
-          {/* Billing cycle toggle */}
-          <div className="flex justify-center items-center space-x-4 mb-8">
+          {/* Plan type toggle */}
+          <div className="flex justify-center items-center space-x-4 mb-8 flex-wrap gap-4">
             <button
-              onClick={() => setBillingCycle('monthly')}
-              className={`px-4 py-2 rounded-md transition-all ${
-                billingCycle === 'monthly'
+              onClick={() => setPlanType('gym')}
+              className={`px-6 py-3 rounded-md transition-all ${
+                planType === 'gym'
                   ? 'bg-gym-yellow text-gym-black font-bold'
-                  : 'bg-gym-gray-800 text-white'
+                  : 'bg-gym-gray-800 text-white hover:bg-gym-gray-700'
               }`}
             >
-              Monthly
+              Gym Plans
             </button>
             <button
-              onClick={() => setBillingCycle('quarterly')}
-              className={`px-4 py-2 rounded-md transition-all ${
-                billingCycle === 'quarterly'
+              onClick={() => setPlanType('pool')}
+              className={`px-6 py-3 rounded-md transition-all ${
+                planType === 'pool'
                   ? 'bg-gym-yellow text-gym-black font-bold'
-                  : 'bg-gym-gray-800 text-white'
+                  : 'bg-gym-gray-800 text-white hover:bg-gym-gray-700'
               }`}
             >
-              Quarterly
+              Pool Plans
             </button>
             <button
-              onClick={() => setBillingCycle('yearly')}
-              className={`px-4 py-2 rounded-md transition-all ${
-                billingCycle === 'yearly'
+              onClick={() => setPlanType('pt')}
+              className={`px-6 py-3 rounded-md transition-all ${
+                planType === 'pt'
                   ? 'bg-gym-yellow text-gym-black font-bold'
-                  : 'bg-gym-gray-800 text-white'
+                  : 'bg-gym-gray-800 text-white hover:bg-gym-gray-700'
               }`}
             >
-              Yearly
+              Personal Training
             </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+          {activePlans.map((plan, index) => (
             <div
-              key={plan.name}
+              key={`${planType}-${plan.name}`}
               className={`relative rounded-lg overflow-hidden transition-all duration-500 ${
                 isVisible ? 'animate-fade-in' : 'opacity-0'
               } ${
@@ -172,22 +245,15 @@ const MembershipSection = () => {
               )}
               
               <div className="p-6 bg-gym-gray-800">
-                <h3 className="text-2xl font-impact mb-2">{plan.name}</h3>
-                <p className="text-gray-400 mb-4">{plan.description}</p>
+                <h3 className="text-xl font-impact mb-2">{plan.name}</h3>
                 
                 <div className="flex items-end mb-4">
-                  <span className="text-4xl font-bold">₹{getPrice(plan).toLocaleString()}</span>
+                  <span className="text-4xl font-bold">₹{plan.price.toLocaleString()}</span>
                   <span className="text-gray-400 ml-2">
-                    /{billingCycle === 'monthly' ? 'month' : billingCycle === 'quarterly' ? 'quarter' : 'year'}
+                    /{plan.name.toLowerCase().includes('month') ? 'plan' : 'plan'}
                   </span>
                 </div>
                 
-                {getSavings(plan) > 0 && (
-                  <div className="bg-gym-yellow/10 text-gym-yellow rounded-md p-2 text-sm font-bold mb-4">
-                    Save {getSavings(plan)}% with {billingCycle} billing
-                  </div>
-                )}
-
                 <a href="#contact" className="btn btn-primary w-full mb-6">
                   Get Your Pass
                 </a>

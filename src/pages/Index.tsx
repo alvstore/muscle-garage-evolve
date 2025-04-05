@@ -10,6 +10,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import HighlightsSection from "@/components/HighlightsSection";
 import { useScrollAnimation } from "@/utils/useScrollAnimation";
 
 const Index = () => {
@@ -37,6 +38,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <HighlightsSection />
       <SectionDivider equipmentType="barbell" className="bg-gym-black" />
       <AboutSection />
       <SectionDivider equipmentType="dumbbell" className="bg-gym-gray-900" />
