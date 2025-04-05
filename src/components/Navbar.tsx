@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X, User, MessageSquare } from "lucide-react";
+import { Menu, X, User, ShoppingCart } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,14 +110,18 @@ const Navbar = () => {
           </NavigationMenu>
           
           <div className="flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              className="border-gym-yellow text-gym-yellow hover:bg-gym-yellow hover:text-gym-black"
+            <Button
+              variant="outline"
+              className="border-gym-yellow text-gym-yellow hover:bg-gym-yellow hover:text-gym-black relative"
               size="sm"
-              onClick={() => window.open("https://wa.me/+911234567890", "_blank")}
+              onClick={() => window.location.href = "/cart"}
             >
-              <MessageSquare className="mr-2 h-4 w-4" />
-              WhatsApp
+              <ShoppingCart className="h-4 w-4" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </Button>
             
             <a href="#membership" className="btn btn-primary">
@@ -132,14 +137,18 @@ const Navbar = () => {
 
         {/* Mobile Navigation Toggle */}
         <div className="md:hidden flex items-center gap-2">
-          <Button 
-            variant="outline" 
-            className="border-gym-yellow text-gym-yellow hover:bg-gym-yellow hover:text-gym-black"
+          <Button
+            variant="outline"
+            className="border-gym-yellow text-gym-yellow hover:bg-gym-yellow hover:text-gym-black relative"
             size="sm"
-            onClick={() => window.open("https://wa.me/+911234567890", "_blank")}
+            onClick={() => window.location.href = "/cart"}
           >
-            <MessageSquare className="mr-2 h-4 w-4" />
-            WhatsApp
+            <ShoppingCart className="h-4 w-4" />
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Button>
           
           <button

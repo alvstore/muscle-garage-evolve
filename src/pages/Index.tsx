@@ -11,6 +11,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
 import HighlightsSection from "@/components/HighlightsSection";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import { useScrollAnimation } from "@/utils/useScrollAnimation";
 
 const Index = () => {
@@ -37,6 +38,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <FloatingWhatsAppButton />
       <HeroSection />
       <HighlightsSection />
       <SectionDivider equipmentType="barbell" className="bg-gym-black" />
