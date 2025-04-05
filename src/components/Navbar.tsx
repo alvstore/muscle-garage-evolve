@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +56,10 @@ const Navbar = () => {
           <a href="#membership" className="btn btn-primary ml-2">
             Join Now
           </a>
+          <a href="/login" className="flex items-center gap-2 px-4 py-2 bg-gym-gray-800 hover:bg-gym-gray-700 text-white rounded-md transition-colors duration-300">
+            <User size={18} />
+            <span>Login</span>
+          </a>
         </nav>
 
         {/* Mobile Navigation Toggle */}
@@ -86,6 +90,14 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Join Now
+              </a>
+              <a 
+                href="/login" 
+                className="flex items-center gap-2 px-4 py-2 bg-gym-gray-800 hover:bg-gym-gray-700 text-white rounded-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <User size={18} />
+                <span>Login</span>
               </a>
             </div>
           </div>

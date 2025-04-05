@@ -9,6 +9,7 @@ import TrainersSection from "@/components/TrainersSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import SectionDivider from "@/components/SectionDivider";
 import { useScrollAnimation } from "@/utils/useScrollAnimation";
 
 const Index = () => {
@@ -36,11 +37,17 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <SectionDivider equipmentType="barbell" className="bg-gym-black" />
       <AboutSection />
+      <SectionDivider equipmentType="dumbbell" className="bg-gym-gray-900" />
       <GallerySection />
+      <SectionDivider equipmentType="kettlebell" className="bg-gym-gray-900" />
       <MembershipSection />
+      <SectionDivider equipmentType="proteinShake" className="bg-gym-black" />
       <TrainersSection />
+      <SectionDivider equipmentType="barbell" className="bg-gym-gray-900" />
       <TestimonialsSection />
+      <SectionDivider equipmentType="dumbbell" className="bg-gym-black" />
       <ContactSection />
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Play, ChevronRight } from "lucide-react";
+import GymEquipment3D from "./GymEquipment3D";
 
 const HeroSection = () => {
   const [loaded, setLoaded] = useState(false);
@@ -21,6 +22,14 @@ const HeroSection = () => {
     >
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gym-black opacity-90"></div>
+
+      {/* 3D Gym Equipment Background */}
+      <div className="absolute top-20 right-10 w-40 h-40 opacity-60">
+        <GymEquipment3D type="dumbbell" rotationSpeed={0.5} />
+      </div>
+      <div className="absolute bottom-40 left-10 w-32 h-32 opacity-60">
+        <GymEquipment3D type="kettlebell" rotationSpeed={0.3} />
+      </div>
 
       {/* Content */}
       <div className={`gym-container relative z-10 text-center max-w-5xl transition-all duration-700 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
