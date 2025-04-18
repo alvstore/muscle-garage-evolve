@@ -1,25 +1,16 @@
-
 import { useState, useEffect } from "react";
 import { Play, ChevronRight } from "lucide-react";
 import GymEquipment3D from "./GymEquipment3D";
-
 const HeroSection = () => {
   const [loaded, setLoaded] = useState(false);
-
   useEffect(() => {
     setLoaded(true);
   }, []);
-
-  return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/hero-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+  return <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{
+    backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/hero-bg.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  }}>
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gym-black opacity-90"></div>
 
@@ -46,9 +37,7 @@ const HeroSection = () => {
           <a href="#membership" className="btn btn-primary text-lg flex items-center gap-2 group">
             Join Now <ChevronRight className="group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="#gallery" className="btn btn-outline text-lg flex items-center gap-2">
-            <Play size={18} fill="currentColor" /> Take a Virtual Tour
-          </a>
+          
         </div>
       </div>
 
@@ -58,8 +47,6 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-gym-yellow rounded-full animate-pulse-soft"></div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
